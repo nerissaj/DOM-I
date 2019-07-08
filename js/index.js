@@ -42,7 +42,8 @@ const siteContent = {
 //logo.setAttribute('src', siteContent["nav"]["img-src"])
 //const nav = document.querySelector('nav');
 //var nav = document.createElement("nav-items");
-  //       var heading_text = document.createTextNode("DOM Is Awesome");
+ 
+//       var heading_text = document.createTextNode("DOM Is Awesome");
     //     heading.appendChild(heading_text);
       //   document.body.appendChild(heading);
       
@@ -52,23 +53,12 @@ const siteContent = {
   //nav.style.backgroundColor = "green";
 //const navbar = document.querySelector('nav');
 //nav.textContent('.nav-item-7', Portfolio);
-let link = document.body.getElementsByTagName("a")[0];
-console.log(link.href);
-const multipleSelections = document.querySelectorAll('a');
-console.log(multipleSelections[0]);
-const multipleSelections = document.querySelectorAll('a');
-console.log(multipleSelections[1]);
-const multipleSelections = document.querySelectorAll('a');
-console.log(multipleSelections[2]);
-const multipleSelections = document.querySelectorAll('a');
-console.log(multipleSelections[3]);
-const multipleSelections = document.querySelectorAll('a');
-console.log(multipleSelections[4]);
-const multipleSelections = document.querySelectorAll('a');
-console.log(multipleSelections[5]);
-var p = document.appendElement("p");
-p.innerHTML="Features content elementum magna eros, ac posuere elvit tempus et. Suspendisse vel tempus odio, in interdutm nisi. Suspendisse eu ornare nisl. Nullam convallis augue justo, at imperdiet metus scelerisque quis.",";       
- 
+//let link = document.body.getElementsByTagName("a")[0];
+//console.log(link.href);
+//const multipleSelections = document.querySelectorAll('a');
+//console.log(multipleSelections[0]);
+//const multipleSelections = document.querySelectorAll('a');
+
 //const middleimg = document.querySelector('middle-img-src');
 //middleimg.src = "img/mid-page-accent.jpg";
 //middleimg.alt ="middle pic";
@@ -77,4 +67,65 @@ p.innerHTML="Features content elementum magna eros, ac posuere elvit tempus et. 
 
 //const contact = document.querySelector('contact');
 //contact.classList.add('.address');
-var fh4 = document.getElementById("features-h4").innerHTML = "Features";
+//var fh4 = document.getElementById("features-h4").innerHTML = "Features";
+
+
+
+let selectedNavLinks = document.querySelectorAll("nav a");
+selectedNavLinks.forEach((link, i) => {
+  link.innerHTML = siteContent.nav[`nav-item-${i+1}`];
+})
+
+// Update CTA
+let ctaText = document.getElementsByClassName("cta-text")[0];
+
+ctaText.getElementsByTagName("h1")[0].innerHTML = siteContent["cta"]["h1"];
+ctaText.getElementsByTagName("button")[0].innerHTML = siteContent["cta"]["button"];
+
+let ctaImg = document.getElementById("cta-img");
+ctaImg.setAttribute("src", siteContent["cta"]["img-src"]);
+// console.log(document.getElementsByClassName("cta")[0])
+
+// Update MainContent
+let textContentList = document.querySelectorAll(".text-content");
+
+textContentList[0].getElementsByTagName("h4")[0].innerHTML = siteContent["main-content"]["features-h4"];
+textContentList[0].getElementsByTagName("p")[0].innerHTML = siteContent["main-content"]["features-content"];
+textContentList[1].getElementsByTagName("h4")[0].innerHTML = siteContent["main-content"]["about-h4"];
+textContentList[1].getElementsByTagName("p")[0].innerHTML = siteContent["main-content"]["about-content"];
+textContentList[2].getElementsByTagName("h4")[0].innerHTML = siteContent["main-content"]["services-h4"];
+textContentList[2].getElementsByTagName("p")[0].innerHTML = siteContent["main-content"]["services-content"];
+textContentList[3].getElementsByTagName("h4")[0].innerHTML = siteContent["main-content"]["product-h4"];
+textContentList[3].getElementsByTagName("p")[0].innerHTML = siteContent["main-content"]["product-content"];
+textContentList[4].getElementsByTagName("h4")[0].innerHTML = siteContent["main-content"]["vision-h4"];
+textContentList[4].getElementsByTagName("p")[0].innerHTML = siteContent["main-content"]["vision-content"];
+
+let middleImg = document.getElementById("middle-img");
+middleImg.setAttribute('src', siteContent["main-content"]["middle-img-src"])
+
+// Update Contact
+let contact = document.getElementsByClassName("contact")[0];
+contact.getElementsByTagName("h4")[0].innerHTML = siteContent["contact"]["contact-h4"]
+contact.getElementsByTagName("p")[0].innerHTML = siteContent["contact"]["address"]
+contact.getElementsByTagName("p")[1].innerHTML = siteContent["contact"]["phone"]
+contact.getElementsByTagName("p")[2].innerHTML = siteContent["contact"]["email"]
+
+// Update Footer
+let footer = document.querySelector("footer");
+footer.getElementsByTagName("p")[0].innerHTML = siteContent["footer"]["copyright"];
+
+// Add New Content
+// Change navigation text color
+selectedNavLinks.forEach((link,i) => {
+  link.style.color = "green";
+})
+
+// Add two items to navigation
+selectedNavLinks = document.getElementsByTagName("nav")[0];
+let createNewNode = (name) => {
+  let newNode = document.createElement("a");
+  newNode.innerHTML = name;
+  return newNode;
+}
+selectedNavLinks.prepend(createNewNode("Extra Item 1"));
+selectedNavLinks.append(createNewNode("Extra Item 2"));
